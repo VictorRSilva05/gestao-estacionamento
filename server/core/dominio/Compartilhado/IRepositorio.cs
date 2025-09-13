@@ -1,4 +1,4 @@
-﻿namespace eAgenda.Core.Dominio.Compartilhado;
+﻿namespace GestaoDeEstacionamento.Core.Dominio.Compartilhado;
 
 public interface IRepositorio<T> where T : EntidadeBase<T>
 {

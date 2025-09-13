@@ -1,4 +1,9 @@
 
+using GestaoDeEstacionamento.Core.Aplicacao;
+using GestaoDeEstacionamento.Infraestrutura.Orm;
+using GestaoDeEstacionamento.WebApi.AutoMapper;
+using System.Text.Json.Serialization;
+
 namespace GestaoDeEstacionamento.WebApi
 {
     public class Program
@@ -8,8 +13,17 @@ namespace GestaoDeEstacionamento.WebApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services
+                .AddCamadaAplicacao(builder.Logging, builder.Configuration)
+                .AddCamadaInfraestruturaOrm(builder.Configuration);
 
-            builder.Services.AddControllers();
+            builder.Services.AddAutoMapperProfiles(builder.Configuration);
+
+            builder.Services
+                .AddControllers()
+                .AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -26,7 +40,6 @@ namespace GestaoDeEstacionamento.WebApi
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

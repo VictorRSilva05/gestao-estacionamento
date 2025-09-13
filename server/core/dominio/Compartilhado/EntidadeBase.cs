@@ -1,4 +1,4 @@
-﻿namespace eAgenda.Core.Dominio.Compartilhado;
+﻿namespace GestaoDeEstacionamento.Core.Dominio.Compartilhado;
 
 public abstract class EntidadeBase<T>
 {
