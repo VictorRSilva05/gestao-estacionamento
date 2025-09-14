@@ -2,22 +2,23 @@
 using eAgenda.Core.Aplicacao.Compartilhado;
 using FluentResults;
 using FluentValidation;
-using GestaoDeEstacionamento.Core.Aplicacao.ModuloHospede.Commands;
+using GestaoDeEstacionamento.Core.Aplicacao.ModuloVeiculo.Commands;
 using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
-using GestaoDeEstacionamento.Core.Dominio.ModuloHospede;
+using GestaoDeEstacionamento.Core.Dominio.ModuloVeiculo;
 using MediatR;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 
-namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloHospede.Handlers;
-public class EditarHospedeCommandHandler(
-    IRepositorioHospede repositorioHospede,
+namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloVeiculo.Handlers;
+public class CadastrarVeiculoCommandHandler(
+    IRepositorioVeiculo repositorioVeiculo,
     IUnitOfWork unitOfWork,
     IMapper mapper,
-    IValidator<EditarHospedeCommand> validator,
-    ILogger<EditarHospedeCommandHandler> logger
-    ) : IRequestHandler<EditarHospedeCommand, Result<EditarHospedeResult>>
+    IValidator<CadastrarVeiculoCommand> validator,
+    ILogger<CadastrarVeiculoCommandHandler> logger
+    ) : IRequestHandler<CadastrarVeiculoCommand, Result<CadastrarVeiculoResult>>
 {
-    public async Task<Result<EditarHospedeResult>> Handle(EditarHospedeCommand command, CancellationToken cancellationToken)
+    public async Task<Result<CadastrarVeiculoResult>> Handle(CadastrarVeiculoCommand command, CancellationToken cancellationToken)
     {
         var resultadoValidacao = await validator.ValidateAsync(command, cancellationToken);
 
@@ -32,13 +33,13 @@ public class EditarHospedeCommandHandler(
 
         try
         {
-            var hospedeEditado = mapper.Map<Hospede>(command);
+            var veiculo = mapper.Map<Veiculo>(command);
 
-            await repositorioHospede.EditarAsync(command.Id, hospedeEditado);
+            await repositorioVeiculo.CadastrarAsync(veiculo);
 
             await unitOfWork.CommitAsync();
 
-            var result = mapper.Map<EditarHospedeResult>(hospedeEditado);
+            var result = mapper.Map<CadastrarVeiculoResult>(veiculo);
 
             return Result.Ok(result);
         }
@@ -47,10 +48,10 @@ public class EditarHospedeCommandHandler(
             await unitOfWork.RollbackAsync();
 
             logger.LogError(
-                ex,
-                "Ocorreu um erro durante a edição de {@Registro}.",
+                  ex,
+                "Ocorreu um erro durante o registro de {@Registro}.",
                 command
-            );
+                );
 
             return Result.Fail(ResultadosErro.ExcecaoInternaErro(ex));
         }

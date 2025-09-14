@@ -2,22 +2,22 @@
 using eAgenda.Core.Aplicacao.Compartilhado;
 using FluentResults;
 using FluentValidation;
-using GestaoDeEstacionamento.Core.Aplicacao.ModuloHospede.Commands;
+using GestaoDeEstacionamento.Core.Aplicacao.ModuloVeiculo.Commands;
 using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
-using GestaoDeEstacionamento.Core.Dominio.ModuloHospede;
+using GestaoDeEstacionamento.Core.Dominio.ModuloVeiculo;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloHospede.Handlers;
-public class EditarHospedeCommandHandler(
-    IRepositorioHospede repositorioHospede,
+namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloVeiculo.Handlers;
+public class EditarVeiculoCommandHandler(
+    IRepositorioVeiculo repositorioVeiculo,
     IUnitOfWork unitOfWork,
     IMapper mapper,
-    IValidator<EditarHospedeCommand> validator,
-    ILogger<EditarHospedeCommandHandler> logger
-    ) : IRequestHandler<EditarHospedeCommand, Result<EditarHospedeResult>>
+    IValidator<EditarVeiculoCommand> validator,
+    ILogger<EditarVeiculoCommandHandler> logger
+    ) : IRequestHandler<EditarVeiculoCommand, Result<EditarVeiculoResult>>
 {
-    public async Task<Result<EditarHospedeResult>> Handle(EditarHospedeCommand command, CancellationToken cancellationToken)
+    public async Task<Result<EditarVeiculoResult>> Handle(EditarVeiculoCommand command, CancellationToken cancellationToken)
     {
         var resultadoValidacao = await validator.ValidateAsync(command, cancellationToken);
 
@@ -32,13 +32,13 @@ public class EditarHospedeCommandHandler(
 
         try
         {
-            var hospedeEditado = mapper.Map<Hospede>(command);
+            var veiculoEditado = mapper.Map<Veiculo>(command);
 
-            await repositorioHospede.EditarAsync(command.Id, hospedeEditado);
+            await repositorioVeiculo.EditarAsync(command.Id, veiculoEditado);
 
             await unitOfWork.CommitAsync();
 
-            var result = mapper.Map<EditarHospedeResult>(hospedeEditado);
+            var result = mapper.Map<EditarVeiculoResult>(veiculoEditado);
 
             return Result.Ok(result);
         }

@@ -30,11 +30,6 @@ public class CadastrarHospedeCommandHandler(
             return Result.Fail(erroFormatado);
         }
 
-        var registros = await repositorioHospede.SelecionarRegistrosAsync();
-
-        if (registros.Any(i => i.Nome.Equals(command.Nome)))
-            return Result.Fail(ResultadosErro.RegistroDuplicadoErro("Já existe um contato registrado com este nome."));
-
         try
         {
             var hospede = mapper.Map<Hospede>(command);
