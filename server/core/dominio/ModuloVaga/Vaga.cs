@@ -8,11 +8,11 @@ public class Vaga : EntidadeBase<Vaga>
 
     public Vaga() { }
 
-    public Vaga(string nome, bool ocupada) : this()
+    public Vaga(string nome) : this()
     {
         Id = Guid.NewGuid();
         Nome = nome;
-        Ocupada = ocupada;
+        Ocupada = false;
     }
 
     public override void AtualizarRegistro(Vaga registroEditado)
