@@ -10,6 +10,7 @@ using GestaoDeEstacionamento.Core.Dominio.ModuloVaga;
 using GestaoDeEstacionamento.Core.Dominio.ModuloVeiculo;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using System.Net.Sockets;
 
 namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloTicket.Handlers;
 public class EditarTicketCommandHandler(
@@ -38,7 +39,23 @@ public class EditarTicketCommandHandler(
 
         try
         {
+            var hospedeExiste = await repositorioHospede.SelecionarRegistroPorIdAsync(command.HospedeId);
+            if (hospedeExiste is null)
+                return Result.Fail("Hóspede não encontrado.");
+
+            var veiculoExiste = await repositorioVeiculo.SelecionarRegistroPorIdAsync(command.VeiculoId);
+            if (veiculoExiste is null)
+                return Result.Fail("Veículo não encontrado.");
+
+            var vagaExiste = await repositorioVaga.SelecionarRegistroPorIdAsync(command.VagaId);
+            if (vagaExiste is null)
+                return Result.Fail("Vaga não encontrada.");
+
             var ticketEditado = mapper.Map<Ticket>(command);
+
+            ticketEditado.Hospede = hospedeExiste;
+            ticketEditado.Veiculo = veiculoExiste;
+            ticketEditado.Vaga = vagaExiste;
 
             await repositorioTicket.EditarAsync(command.Id, ticketEditado);
 

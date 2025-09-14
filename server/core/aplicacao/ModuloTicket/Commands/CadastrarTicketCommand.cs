@@ -6,9 +6,9 @@ using MediatR;
 
 namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloTicket.Commands;
 public record CadastrarTicketCommand(
-    Hospede HospedeId,
-    Veiculo VeiculoId,
-    Vaga VagaId,
+    Guid HospedeId,
+    Guid VeiculoId,
+    Guid VagaId,
     DateTime Entrada,
     DateTime? Saida,
     string? Observacao,

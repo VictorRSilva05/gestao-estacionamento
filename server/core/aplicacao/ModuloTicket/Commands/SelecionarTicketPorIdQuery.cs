@@ -9,9 +9,9 @@ public record SelecionarTicketPorIdQuery(Guid Id) : IRequest<Result<SelecionarTi
 
 public record SelecionarTicketPorIdResult(
     Guid Id,
-    Hospede HospedeId,
-    Veiculo VeiculoId,
-    Vaga VagaId,
+    Guid HospedeId,
+    Guid VeiculoId,
+    Guid VagaId,
     DateTime Entrada,
     DateTime? Saida,
     string? Observacao,

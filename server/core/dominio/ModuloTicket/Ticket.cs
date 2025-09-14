@@ -18,6 +18,7 @@ public class Ticket : EntidadeBase<Ticket>
 
     public Ticket(Hospede hospede, Veiculo veiculo, Vaga vaga, string? observacao) : this()
     {
+        Id = Guid.NewGuid();
         Hospede = hospede;
         Veiculo = veiculo;
         Vaga = vaga;

@@ -10,9 +10,9 @@ public record SelecionarTicketsQuery(int? Quantidade) : IRequest<Result<Selecion
 public record SelecionarTicketsResult(ImmutableList<SelecionarTicketsDto> Tickets);
 public record SelecionarTicketsDto(
     Guid id,
-    Hospede HospedeId,
-    Veiculo VeiculoId,
-    Vaga VagaId,
+    Guid HospedeId,
+    Guid VeiculoId,
+    Guid VagaId,
     DateTime Entrada,
     DateTime? Saida,
     string? Observacao,

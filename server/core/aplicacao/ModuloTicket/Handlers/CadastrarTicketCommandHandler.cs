@@ -39,13 +39,29 @@ public class CadastrarTicketCommandHandler(
 
         try
         {
-            var compromisso = mapper.Map<Ticket>(command);
+            var hospedeExiste = await repositorioHospede.SelecionarRegistroPorIdAsync(command.HospedeId);
+            if (hospedeExiste is null)
+                return Result.Fail("Hóspede não encontrado.");
 
-            await repositorioTicket.CadastrarAsync(compromisso);
+            var veiculoExiste = await repositorioVeiculo.SelecionarRegistroPorIdAsync(command.VeiculoId);
+            if (veiculoExiste is null)
+                return Result.Fail("Veículo não encontrado.");
+
+            var vagaExiste = await repositorioVaga.SelecionarRegistroPorIdAsync(command.VagaId);
+            if (vagaExiste is null)
+                return Result.Fail("Vaga não encontrada.");
+
+            var ticket = mapper.Map<Ticket>(command);
+
+            ticket.Hospede = hospedeExiste;
+            ticket.Veiculo = veiculoExiste;
+            ticket.Vaga = vagaExiste;
+
+            await repositorioTicket.CadastrarAsync(ticket);
 
             await unitOfWork.CommitAsync();
 
-            var result = mapper.Map<CadastrarTicketResult>(compromisso);
+            var result = mapper.Map<CadastrarTicketResult>(ticket);
 
             return Result.Ok(result);
         }

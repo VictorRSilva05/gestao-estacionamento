@@ -17,9 +17,9 @@ public class TicketMappingProfile : Profile
         CreateMap<Ticket, SelecionarTicketPorIdResult>()
             .ConvertUsing(src => new SelecionarTicketPorIdResult(
                 src.Id,
-                src.Hospede,
-                src.Veiculo,
-                src.Vaga,
+                src.Hospede.Id,
+                src.Veiculo.Id,
+                src.Vaga.Id,
                 src.Entrada,
                 src.Saida,
                 src.Observacao,
@@ -29,9 +29,9 @@ public class TicketMappingProfile : Profile
         CreateMap<Ticket, SelecionarTicketsDto>()
            .ConvertUsing(src => new SelecionarTicketsDto(
                 src.Id,
-                src.Hospede,
-                src.Veiculo,
-                src.Vaga,
+                src.Hospede.Id,
+                src.Veiculo.Id,
+                src.Vaga.Id,
                 src.Entrada,
                 src.Saida,
                 src.Observacao,

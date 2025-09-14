@@ -14,12 +14,7 @@ using Microsoft.Extensions.Logging;
 namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloTicket.Handlers;
 public class ExcluirTicketCommandHandler(
     IRepositorioTicket repositorioTicket,
-    IRepositorioHospede repositorioHospede,
-    IRepositorioVeiculo repositorioVeiculo,
-    IRepositorioVaga repositorioVaga,
     IUnitOfWork unitOfWork,
-    IMapper mapper,
-    IValidator<ExcluirTicketCommand> validator,
     ILogger<ExcluirTicketCommandHandler> logger
     ) : IRequestHandler<ExcluirTicketCommand, Result<ExcluirTicketResult>>
 {
