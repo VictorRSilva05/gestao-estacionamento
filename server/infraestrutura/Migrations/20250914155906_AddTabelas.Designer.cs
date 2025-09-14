@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
 {
     [DbContext(typeof(GestaoDeEstacionamentoDbContext))]
-    [Migration("20250913222259_AddModuloVeiculo")]
-    partial class AddModuloVeiculo
+    [Migration("20250914155906_AddTabelas")]
+    partial class AddTabelas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,7 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Veiculo");
+                    b.ToTable("Veiculos");
                 });
 #pragma warning restore 612, 618
         }

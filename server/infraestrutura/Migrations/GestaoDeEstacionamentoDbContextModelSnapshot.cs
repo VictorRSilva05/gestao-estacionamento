@@ -62,7 +62,7 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Veiculo");
+                    b.ToTable("Veiculos");
                 });
 #pragma warning restore 612, 618
         }

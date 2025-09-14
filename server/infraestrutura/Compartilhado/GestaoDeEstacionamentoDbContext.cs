@@ -1,11 +1,13 @@
 ﻿using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
 using GestaoDeEstacionamento.Core.Dominio.ModuloHospede;
+using GestaoDeEstacionamento.Core.Dominio.ModuloVeiculo;
 using Microsoft.EntityFrameworkCore;
 
 namespace GestaoDeEstacionamento.Infraestrutura.Orm.Compartilhado;
 public class GestaoDeEstacionamentoDbContext : DbContext, IUnitOfWork
 {
     public DbSet<Hospede> Hospedes { get; set; } 
+    public DbSet<Veiculo> Veiculos { get; set; }
 
     public GestaoDeEstacionamentoDbContext(DbContextOptions options) : base(options) { }
 
