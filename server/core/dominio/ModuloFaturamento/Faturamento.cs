@@ -13,7 +13,6 @@ public class Faturamento : EntidadeBase<Faturamento>
 
     public Faturamento(Ticket ticket)
     {
-        Id = Guid.NewGuid();
         Ticket = ticket;
     }
 

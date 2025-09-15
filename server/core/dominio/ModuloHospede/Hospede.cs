@@ -9,7 +9,6 @@ public class Hospede : EntidadeBase<Hospede>
 
     public Hospede(string nome) : this()
     {
-        Id = Guid.NewGuid();
         Nome = nome;
     }
     public override void AtualizarRegistro(Hospede registroEditado)
