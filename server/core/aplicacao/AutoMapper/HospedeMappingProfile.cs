@@ -17,13 +17,15 @@ public class HospedeMappingProfile : Profile
         CreateMap<Hospede, SelecionarHospedePorIdResult>()
             .ConvertUsing(src => new SelecionarHospedePorIdResult(
                 src.Id,
-                src.Nome
+                src.Nome,
+                src.CPF
             ));
 
         CreateMap<Hospede, SelecionarHospedePorIdResult>()
             .ConvertUsing(src => new SelecionarHospedePorIdResult(
                 src.Id,
-                src.Nome
+                src.Nome,
+                src.CPF
                 ));
 
         CreateMap<Hospede, SelecionarHospedesDto>();

@@ -4,5 +4,6 @@ public record SelecionarHospedePorIdRequest(Guid Id);
 
 public record SelecionarHospedePorIdResponse(
     Guid Id,
-    string Nome
+    string Nome,
+    string CPF
     );

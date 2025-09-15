@@ -13,5 +13,8 @@ public class MapeadorHospedeEmOrm : IEntityTypeConfiguration<Hospede>
 
         builder.Property(x => x.Nome)
             .IsRequired();
+
+        builder.Property(x => x.CPF)
+            .IsRequired();
     }
 }

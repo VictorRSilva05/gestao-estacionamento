@@ -6,5 +6,6 @@ public record SelecionarHospedePorIdQuery(Guid Id) : IRequest<Result<SelecionarH
 
 public record SelecionarHospedePorIdResult(
     Guid Id,
-    string Nome
+    string Nome,
+    string CPF
     );

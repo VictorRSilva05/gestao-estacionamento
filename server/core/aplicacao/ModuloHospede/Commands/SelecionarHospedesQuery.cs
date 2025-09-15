@@ -9,7 +9,8 @@ public record SelecionarHospedesResult(ImmutableList<SelecionarHospedesDto> Hosp
 
 public record SelecionarHospedesDto(
     Guid Id,
-    string Nome
+    string Nome,
+    string CPF
     );
 
 

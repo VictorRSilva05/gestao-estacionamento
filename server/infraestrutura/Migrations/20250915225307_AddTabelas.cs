@@ -17,6 +17,7 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Nome = table.Column<string>(type: "text", nullable: false),
+                    CPF = table.Column<string>(type: "text", nullable: false),
                     UsuarioId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>

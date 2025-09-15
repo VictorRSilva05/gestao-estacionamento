@@ -54,6 +54,10 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");

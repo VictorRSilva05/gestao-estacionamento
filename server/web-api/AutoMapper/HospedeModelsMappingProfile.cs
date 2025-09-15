@@ -15,7 +15,8 @@ public class HospedeModelsMappingProfile : Profile
         CreateMap<(Guid, EditarHospedeRequest), EditarHospedeCommand>()
             .ConvertUsing(src => new EditarHospedeCommand(
                 src.Item1,
-                src.Item2.Nome
+                src.Item2.Nome,
+                src.Item2.CPF
             ));
 
         CreateMap<EditarHospedeResult, EditarHospedeResponse>();
@@ -26,7 +27,8 @@ public class HospedeModelsMappingProfile : Profile
         CreateMap<SelecionarHospedePorIdResult, SelecionarHospedePorIdResponse>()
             .ConvertUsing(src => new SelecionarHospedePorIdResponse(
                 src.Id,
-                src.Nome
+                src.Nome,
+                src.CPF
             ));
 
         CreateMap<SelecionarHospedesRequest, SelecionarHospedesQuery>();
