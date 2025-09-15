@@ -8,12 +8,20 @@ public class RepositorioTicketEmOrm(GestaoDeEstacionamentoDbContext contexto) : 
 {
     public override async Task<List<Ticket>> SelecionarRegistrosAsync()
     {
-        return await registros.Include(x => x.Vaga).ToListAsync();
+        return await registros
+            .Include(x => x.Vaga)
+            .Include(x => x.Veiculo)
+            .Include(x => x.Hospede)
+            .ToListAsync();
     }
 
     public override async Task<Ticket?> SelecionarRegistroPorIdAsync(Guid id)
     {
-        return await registros.Include(x => x.Vaga).FirstOrDefaultAsync(x => x.Id == id);
+        return await registros
+            .Include(x => x.Vaga)
+            .Include(x => x.Veiculo)
+            .Include(x => x.Hospede)
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 }
 

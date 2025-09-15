@@ -1,6 +1,22 @@
 ﻿using GestaoDeEstacionamento.Core.Dominio.ModuloFaturamento;
 using GestaoDeEstacionamento.Infraestrutura.Orm.Compartilhado;
+using Microsoft.EntityFrameworkCore;
 using TesteFacil.Infraestrutura.Orm.Compartilhado;
 
 namespace GestaoDeEstacionamento.Infraestrutura.Orm.ModuloFaturamento;
-public class RepositorioFaturamentoEmOrm(GestaoDeEstacionamentoDbContext contexto) : RepositorioBaseEmOrm<Faturamento>(contexto), IRepositorioFaturamento;
+public class RepositorioFaturamentoEmOrm(GestaoDeEstacionamentoDbContext contexto) : RepositorioBaseEmOrm<Faturamento>(contexto), IRepositorioFaturamento
+{
+    public override async Task<List<Faturamento>> SelecionarRegistrosAsync()
+    {
+        return await registros
+            .Include(x => x.Ticket)
+            .ToListAsync();
+    }
+
+    public override async Task<Faturamento?> SelecionarRegistroPorIdAsync(Guid id)
+    {
+        return await registros
+            .Include(x => x.Ticket)  
+            .FirstOrDefaultAsync(x => x.Id == id);
+    }
+}
