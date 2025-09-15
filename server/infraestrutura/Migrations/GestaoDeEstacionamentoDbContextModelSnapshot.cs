@@ -122,7 +122,12 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("VeiculoId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("VeiculoId");
 
                     b.ToTable("Vagas");
                 });
@@ -187,6 +192,15 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
                     b.Navigation("Hospede");
 
                     b.Navigation("Vaga");
+
+                    b.Navigation("Veiculo");
+                });
+
+            modelBuilder.Entity("GestaoDeEstacionamento.Core.Dominio.ModuloVaga.Vaga", b =>
+                {
+                    b.HasOne("GestaoDeEstacionamento.Core.Dominio.ModuloVeiculo.Veiculo", "Veiculo")
+                        .WithMany()
+                        .HasForeignKey("VeiculoId");
 
                     b.Navigation("Veiculo");
                 });

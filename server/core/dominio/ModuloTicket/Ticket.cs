@@ -27,6 +27,11 @@ public class Ticket : EntidadeBase<Ticket>
         Aberta = true;
     }
 
+    public void AbrirTicket()
+    {
+        Aberta = true;
+        Vaga.OcuparVaga(Veiculo);
+    }
     public void FecharTicket()
     {
         Aberta = false;

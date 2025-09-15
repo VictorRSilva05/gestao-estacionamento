@@ -1,10 +1,12 @@
 ﻿using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
+using GestaoDeEstacionamento.Core.Dominio.ModuloVeiculo;
 
 namespace GestaoDeEstacionamento.Core.Dominio.ModuloVaga;
 public class Vaga : EntidadeBase<Vaga>
 {
     public string Nome { get; set; }
     public bool Ocupada {  get; set; }
+    public Veiculo? Veiculo { get; set; }
 
     public Vaga() { }
 
@@ -12,6 +14,7 @@ public class Vaga : EntidadeBase<Vaga>
     {
         Nome = nome;
         Ocupada = false;
+        Veiculo = null;
     }
 
     public override void AtualizarRegistro(Vaga registroEditado)
@@ -20,13 +23,15 @@ public class Vaga : EntidadeBase<Vaga>
         Ocupada = registroEditado.Ocupada;
     }
 
-    public void OcuparVaga()
+    public void OcuparVaga(Veiculo veiculo)
     {
         Ocupada = true;
+        Veiculo = veiculo;
     }
 
     public void DesocuparVaga()
     {
         Ocupada = false;
+        Veiculo = null;
     }
 }

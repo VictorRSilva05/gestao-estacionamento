@@ -25,20 +25,6 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vagas",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Nome = table.Column<string>(type: "text", nullable: false),
-                    Ocupada = table.Column<bool>(type: "boolean", nullable: false),
-                    UsuarioId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Vagas", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Veiculos",
                 columns: table => new
                 {
@@ -51,6 +37,26 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Veiculos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Vagas",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Nome = table.Column<string>(type: "text", nullable: false),
+                    Ocupada = table.Column<bool>(type: "boolean", nullable: false),
+                    VeiculoId = table.Column<Guid>(type: "uuid", nullable: true),
+                    UsuarioId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vagas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Vagas_Veiculos_VeiculoId",
+                        column: x => x.VeiculoId,
+                        principalTable: "Veiculos",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -130,6 +136,11 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_VeiculoId",
                 table: "Tickets",
+                column: "VeiculoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vagas_VeiculoId",
+                table: "Vagas",
                 column: "VeiculoId");
         }
 

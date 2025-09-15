@@ -59,8 +59,9 @@ public class CadastrarTicketCommandHandler(
             ticket.Hospede = hospedeExiste;
             ticket.Veiculo = veiculoExiste;
 
-            vagaExiste.OcuparVaga();
             ticket.Vaga = vagaExiste;
+
+            ticket.AbrirTicket();
 
             await repositorioTicket.CadastrarAsync(ticket);
 

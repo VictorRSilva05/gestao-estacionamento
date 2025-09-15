@@ -29,7 +29,7 @@ public class VagaController(IMediator mediator, IMapper mapper) : ControllerBase
                 return BadRequest(errosDeValidacao);
             }
 
-            return StatusCode(StatusCodes.Status500InternalServerError);
+            return StatusCode(StatusCodes.Status409Conflict);
         }
 
         var response = mapper.Map<CadastrarVagaResponse>(result.Value);
