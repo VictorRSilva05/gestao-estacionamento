@@ -97,4 +97,19 @@ public class VagaController(IMediator mediator, IMapper mapper) : ControllerBase
 
         return Ok(response);
     }
+
+    [HttpGet("vaga-por-placa")]
+    public async Task<ActionResult<SelecionarVagaPorPlacaResponse>> SelecionarRegistroPorPlaca(string placa)
+    {
+        var query = mapper.Map<SelecionarVagaPorPlacaQuery>(placa);
+
+        var result = await mediator.Send(query);
+
+        if (result.IsFailed)
+            return NotFound(placa);
+
+        var response = mapper.Map<SelecionarVagaPorPlacaResponse>(result.Value);
+
+        return Ok(response);
+    }
 }

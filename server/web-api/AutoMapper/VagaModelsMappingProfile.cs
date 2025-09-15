@@ -24,6 +24,9 @@ public class VagaModelsMappingProfile : Profile
         CreateMap<Guid, ExcluirVagaCommand>()
             .ConstructUsing(src => new ExcluirVagaCommand(src));
 
+        CreateMap<SelecionarVagaPorPlacaRequest, SelecionarVagaPorPlacaQuery>();
+        CreateMap<SelecionarVagaPorPlacaResult, SelecionarVagaPorPlacaResponse>();
+
 
         CreateMap<SelecionarVagasRequest, SelecionarVagasQuery>();
 

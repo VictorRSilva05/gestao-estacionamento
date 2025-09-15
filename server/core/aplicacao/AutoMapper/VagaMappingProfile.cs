@@ -24,6 +24,13 @@ public class VagaMappingProfile : Profile
                 src.Ocupada
             ));
 
+        CreateMap<Vaga, SelecionarVagaPorPlacaResult>()
+            .ConvertUsing(src => new SelecionarVagaPorPlacaResult(
+                src.Id,
+                src.Nome,
+                src.Veiculo.Placa
+                ));
+
         // Commands/Results de Seleção
         CreateMap<Vaga, SelecionarVagasDto>();
 
