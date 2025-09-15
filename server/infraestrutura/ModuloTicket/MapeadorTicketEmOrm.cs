@@ -21,7 +21,8 @@ public class MapeadorTicketEmOrm : IEntityTypeConfiguration<Ticket>
         builder.Property(x => x.Entrada)
             .IsRequired();
 
-        builder.Property(x => x.Saida);
+        builder.Property(x => x.Saida)
+            .IsRequired();
 
         builder.Property(x => x.Observacao);
 

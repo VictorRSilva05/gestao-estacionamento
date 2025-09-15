@@ -20,4 +20,14 @@ public class Vaga : EntidadeBase<Vaga>
         Nome = registroEditado.Nome;
         Ocupada = registroEditado.Ocupada;
     }
+
+    public void OcuparVaga()
+    {
+        Ocupada = true;
+    }
+
+    public void DesocuparVaga()
+    {
+        Ocupada = false;
+    }
 }

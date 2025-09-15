@@ -13,7 +13,7 @@ namespace GestaoDeEstacionamento.WebApi.Controllers;
 public class TicketController(IMediator mediator, IMapper mapper) : ControllerBase
 {
     [HttpPost]
-    public async Task<ActionResult<CadastrarTicketResponse>> Cadastrar(CadastrarTicketRequest request)
+    public async Task<ActionResult<CadastrarTicketResponse>> GerarTicket(CadastrarTicketRequest request)
     {
         var command = mapper.Map<CadastrarTicketCommand>(request);
 
@@ -39,7 +39,7 @@ public class TicketController(IMediator mediator, IMapper mapper) : ControllerBa
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult<EditarTicketResponse>> Editar(Guid id, EditarTicketRequest request)
+    public async Task<ActionResult<EditarTicketResponse>> EditarTicket(Guid id, EditarTicketRequest request)
     {
         var command = mapper.Map<(Guid, EditarTicketRequest), EditarTicketCommand>((id, request));
 
@@ -65,7 +65,7 @@ public class TicketController(IMediator mediator, IMapper mapper) : ControllerBa
     }
 
     [HttpDelete("{id:guid}")]
-    public async Task<ActionResult<ExcluirTicketResponse>> Excluir(Guid id)
+    public async Task<ActionResult<ExcluirTicketResponse>> ExcluirTicket(Guid id)
     {
         var command = mapper.Map<ExcluirTicketCommand>(id);
 

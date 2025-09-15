@@ -51,10 +51,15 @@ public class CadastrarTicketCommandHandler(
             if (vagaExiste is null)
                 return Result.Fail("Vaga não encontrada.");
 
+            if (vagaExiste.Ocupada)
+                return Result.Fail("A vaga já está ocupada");
+
             var ticket = mapper.Map<Ticket>(command);
 
             ticket.Hospede = hospedeExiste;
             ticket.Veiculo = veiculoExiste;
+
+            vagaExiste.OcuparVaga();
             ticket.Vaga = vagaExiste;
 
             await repositorioTicket.CadastrarAsync(ticket);

@@ -1,4 +1,5 @@
 ﻿using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
+using GestaoDeEstacionamento.Core.Dominio.ModuloFaturamento;
 using GestaoDeEstacionamento.Core.Dominio.ModuloHospede;
 using GestaoDeEstacionamento.Core.Dominio.ModuloTicket;
 using GestaoDeEstacionamento.Core.Dominio.ModuloVaga;
@@ -12,6 +13,7 @@ public class GestaoDeEstacionamentoDbContext : DbContext, IUnitOfWork
     public DbSet<Veiculo> Veiculos { get; set; }
     public DbSet<Vaga> Vagas { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
+    public DbSet<Faturamento> Faturamentos { get; set; }
 
     public GestaoDeEstacionamentoDbContext(DbContextOptions options) : base(options) { }
 

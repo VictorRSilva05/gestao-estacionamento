@@ -16,15 +16,22 @@ public class Ticket : EntidadeBase<Ticket>
 
     public Ticket() { }
 
-    public Ticket(Hospede hospede, Veiculo veiculo, Vaga vaga, string? observacao) : this()
+    public Ticket(Hospede hospede, Veiculo veiculo,DateTime saida, Vaga vaga, string? observacao) : this()
     {
         Id = Guid.NewGuid();
         Hospede = hospede;
         Veiculo = veiculo;
         Vaga = vaga;
         Entrada = DateTime.Now;
+        Saida = saida;
         Observacao = observacao;
         Aberta = true;
+    }
+
+    public void FecharTicket()
+    {
+        Aberta = false;
+        Vaga.DesocuparVaga();
     }
 
     public override void AtualizarRegistro(Ticket registroEditado)
