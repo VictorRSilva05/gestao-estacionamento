@@ -13,7 +13,7 @@ namespace GestaoDeEstacionamento.WebApi.Controllers;
 [Route("hospedes")]
 public class HospedeController(IMediator mediator, IMapper mapper) : ControllerBase
 {
-    [HttpPost]
+    [HttpPost("cadastrar-hospede")]
     public async Task<ActionResult<CadastrarHospedeResponse>> Cadastrar(CadastrarHospedeRequest request)
     {
         var command = mapper.Map<CadastrarHospedeCommand>(request);
@@ -39,7 +39,7 @@ public class HospedeController(IMediator mediator, IMapper mapper) : ControllerB
         return Created(string.Empty, response);
     }
 
-    [HttpPut("{id:guid}")]
+    [HttpPut("{id:guid} editar-hospede")]
     public async Task<ActionResult<EditarHospedeResponse>> Editar(Guid id, EditarHospedeRequest request)
     {
         var command = mapper.Map<(Guid, EditarHospedeRequest), EditarHospedeCommand>((id, request));
@@ -54,7 +54,7 @@ public class HospedeController(IMediator mediator, IMapper mapper) : ControllerB
         return Ok(response);
     }
 
-    [HttpDelete("{id:guid}")]
+    [HttpDelete("{id:guid} deletar-hospede")]
     public async Task<ActionResult<ExcluirHospedeResponse>> Excluir(Guid id)
     {
         var command = mapper.Map<ExcluirHospedeCommand>(id);
@@ -67,7 +67,7 @@ public class HospedeController(IMediator mediator, IMapper mapper) : ControllerB
         return NoContent();
     }
 
-    [HttpGet]
+    [HttpGet("selecionar-hospedes")]
     public async Task<ActionResult<SelecionarHospedesResponse>> SelecionarRegistros(
         [FromQuery] SelecionarHospedesRequest? request,
         CancellationToken cancellationToken
@@ -85,7 +85,7 @@ public class HospedeController(IMediator mediator, IMapper mapper) : ControllerB
         return Ok(response);
     }
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id:guid} selecionar-hospede-por-id")]
     public async Task<ActionResult<SelecionarHospedePorIdResponse>> SelecionarRegistroPorId(Guid id)
     {
         var query = mapper.Map<SelecionarHospedePorIdQuery>(id);

@@ -12,7 +12,7 @@ namespace GestaoDeEstacionamento.WebApi.Controllers;
 [Route("tickets")]
 public class TicketController(IMediator mediator, IMapper mapper) : ControllerBase
 {
-    [HttpPost]
+    [HttpPost("gerar-ticket")]
     public async Task<ActionResult<CadastrarTicketResponse>> GerarTicket(CadastrarTicketRequest request)
     {
         var command = mapper.Map<CadastrarTicketCommand>(request);
@@ -38,7 +38,7 @@ public class TicketController(IMediator mediator, IMapper mapper) : ControllerBa
         return Created(string.Empty, response);
     }
 
-    [HttpPut("{id:guid}")]
+    [HttpPut("{id:guid} editar-ticket")]
     public async Task<ActionResult<EditarTicketResponse>> EditarTicket(Guid id, EditarTicketRequest request)
     {
         var command = mapper.Map<(Guid, EditarTicketRequest), EditarTicketCommand>((id, request));
@@ -64,7 +64,7 @@ public class TicketController(IMediator mediator, IMapper mapper) : ControllerBa
         return Ok(response);
     }
 
-    [HttpDelete("{id:guid}")]
+    [HttpDelete("{id:guid} deletar-ticket")]
     public async Task<ActionResult<ExcluirTicketResponse>> ExcluirTicket(Guid id)
     {
         var command = mapper.Map<ExcluirTicketCommand>(id);
@@ -77,7 +77,7 @@ public class TicketController(IMediator mediator, IMapper mapper) : ControllerBa
         return NoContent();
     }
 
-    [HttpGet]
+    [HttpGet("selecionar-tickets")]
     public async Task<ActionResult<SelecionarTicketsResponse>> SelecionarRegistros(
         [FromQuery] SelecionarTicketsRequest? request,
         CancellationToken cancellationToken
@@ -95,7 +95,7 @@ public class TicketController(IMediator mediator, IMapper mapper) : ControllerBa
         return Ok(response);
     }
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id:guid} selecionar-ticket-por-id")]
     public async Task<ActionResult<SelecionarTicketPorIdResponse>> SelecionarRegistroPorId(Guid id)
     {
         var query = mapper.Map<SelecionarTicketPorIdQuery>(id);

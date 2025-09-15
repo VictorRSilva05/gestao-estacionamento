@@ -11,7 +11,7 @@ namespace GestaoDeEstacionamento.WebApi.Controllers;
 [Route("veiculos")]
 public class VeiculoController(IMediator mediator, IMapper mapper) : ControllerBase
 {
-    [HttpPost]
+    [HttpPost("cadastrar-veiculo")]
     public async Task<ActionResult<CadastrarVeiculoResponse>> Cadastrar(CadastrarVeiculoRequest request)
     {
         var command = mapper.Map<CadastrarVeiculoCommand>(request);
@@ -37,7 +37,7 @@ public class VeiculoController(IMediator mediator, IMapper mapper) : ControllerB
         return Created(string.Empty, response);
     }
 
-    [HttpPut("{id:guid}")]
+    [HttpPut("{id:guid} editar-veiculo")]
     public async Task<ActionResult<EditarVeiculoResponse>> Editar(Guid id, EditarVeiculoRequest request)
     {
         var command = mapper.Map<(Guid, EditarVeiculoRequest), EditarVeiculoCommand>((id, request));
@@ -52,7 +52,7 @@ public class VeiculoController(IMediator mediator, IMapper mapper) : ControllerB
         return Ok(response);
     }
 
-    [HttpDelete("{id:guid}")]
+    [HttpDelete("{id:guid} deletar-veiculo")]
     public async Task<ActionResult<ExcluirVeiculoResponse>> Excluir(Guid id)
     {
         var command = mapper.Map<ExcluirVeiculoCommand>(id);
@@ -65,7 +65,7 @@ public class VeiculoController(IMediator mediator, IMapper mapper) : ControllerB
         return NoContent();
     }
 
-    [HttpGet]
+    [HttpGet("selecionar-veiculos")]
     public async Task<ActionResult<SelecionarVeiculosResponse>> SelecionarRegistros(
         [FromQuery] SelecionarVeiculosRequest? request,
         CancellationToken cancellationToken
@@ -83,7 +83,7 @@ public class VeiculoController(IMediator mediator, IMapper mapper) : ControllerB
         return Ok(response);
     }
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id:guid} selecionar-veiculo-por-id")]
     public async Task<ActionResult<SelecionarVeiculoPorIdResponse>> SelecionarRegistroPorId(Guid id)
     {
         var query = mapper.Map<SelecionarVeiculoPorIdQuery>(id);

@@ -11,7 +11,7 @@ namespace GestaoDeEstacionamento.WebApi.Controllers;
 [Route("vagas")]
 public class VagaController(IMediator mediator, IMapper mapper) : ControllerBase
 {
-    [HttpPost]
+    [HttpPost("cadastrar-vaga")]
     public async Task<ActionResult<CadastrarVagaResponse>> Cadastrar(CadastrarVagaRequest request)
     {
         var command = mapper.Map<CadastrarVagaCommand>(request);
@@ -37,7 +37,7 @@ public class VagaController(IMediator mediator, IMapper mapper) : ControllerBase
         return Created(string.Empty, response);
     }
 
-    [HttpPut("{id:guid}")]
+    [HttpPut("{id:guid} editar-vaga")]
     public async Task<ActionResult<EditarVagaResponse>> Editar(Guid id, EditarVagaRequest request)
     {
         var command = mapper.Map<(Guid, EditarVagaRequest), EditarVagaCommand>((id, request));
@@ -52,7 +52,7 @@ public class VagaController(IMediator mediator, IMapper mapper) : ControllerBase
         return Ok(response);
     }
 
-    [HttpDelete("{id:guid}")]
+    [HttpDelete("{id:guid} deletar-vaga")]
     public async Task<ActionResult<ExcluirVagaResponse>> Excluir(Guid id)
     {
         var command = mapper.Map<ExcluirVagaCommand>(id);
@@ -65,7 +65,7 @@ public class VagaController(IMediator mediator, IMapper mapper) : ControllerBase
         return NoContent();
     }
 
-    [HttpGet]
+    [HttpGet("selecionar-vagas")]
     public async Task<ActionResult<SelecionarVagasResponse>> SelecionarRegistros(
         [FromQuery] SelecionarVagasRequest? request,
         CancellationToken cancellationToken
@@ -83,7 +83,7 @@ public class VagaController(IMediator mediator, IMapper mapper) : ControllerBase
         return Ok(response);
     }
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id:guid} selecionar-vaga-por-id")]
     public async Task<ActionResult<SelecionarVagaPorIdResponse>> SelecionarRegistroPorId(Guid id)
     {
         var query = mapper.Map<SelecionarVagaPorIdQuery>(id);
@@ -98,7 +98,7 @@ public class VagaController(IMediator mediator, IMapper mapper) : ControllerBase
         return Ok(response);
     }
 
-    [HttpGet("vaga-por-placa")]
+    [HttpGet("selecionar-vaga-por-placa")]
     public async Task<ActionResult<SelecionarVagaPorPlacaResponse>> SelecionarRegistroPorPlaca(string placa)
     {
         var query = mapper.Map<SelecionarVagaPorPlacaQuery>(placa);

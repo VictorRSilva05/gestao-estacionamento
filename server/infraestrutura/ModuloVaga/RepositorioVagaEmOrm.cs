@@ -21,9 +21,9 @@ public class RepositorioVagaEmOrm(GestaoDeEstacionamentoDbContext contexto) : Re
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public Task<Vaga?> SelecionarPorPlacaAsync(string placa)
+    public async Task<Vaga?> SelecionarPorPlacaAsync(string placa)
     {
-        return registros
+        return await registros
             .Include(x => x.Veiculo)
             .FirstOrDefaultAsync(x => x.Veiculo != null && x.Veiculo.Placa == placa);
     }

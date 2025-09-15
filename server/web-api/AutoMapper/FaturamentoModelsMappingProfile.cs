@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloFaturamento.Commands;
+using GestaoDeEstacionamento.Core.Dominio.ModuloFaturamento;
 using GestaoDeEstacionamento.WebApi.Models.ModuloFaturamento;
 using System.Collections.Immutable;
 
