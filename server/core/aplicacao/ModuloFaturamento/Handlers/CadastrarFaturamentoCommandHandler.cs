@@ -38,6 +38,7 @@ public class CadastrarFaturamentoCommandHandler(
             faturamento.Ticket = ticketExiste;
 
             faturamento.Ticket.FecharTicket();
+            faturamento.CalcularFaturamento();
 
             await repositorioFaturamento.CadastrarAsync(faturamento);
 

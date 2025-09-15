@@ -14,9 +14,7 @@ public class Faturamento : EntidadeBase<Faturamento>
     public Faturamento(Ticket ticket)
     {
         Id = Guid.NewGuid();
-        Diarias = CalcularDiarias();
         Ticket = ticket;
-        Total = Diarias * ValorDiaria;
     }
 
     public override void AtualizarRegistro(Faturamento registroEditado)
@@ -24,6 +22,11 @@ public class Faturamento : EntidadeBase<Faturamento>
         throw new NotImplementedException();
     }
 
+    public void CalcularFaturamento()
+    {
+        Diarias = CalcularDiarias();
+        Total = Diarias * ValorDiaria;
+    }
     private int CalcularDiarias()
     {
         TimeSpan duracao = Ticket.Saida.Value - Ticket.Entrada;

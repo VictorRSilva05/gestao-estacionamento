@@ -22,6 +22,33 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("GestaoDeEstacionamento.Core.Dominio.ModuloFaturamento.Faturamento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Diarias")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("TicketId")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("numeric");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("ValorDiaria")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("Faturamentos");
+                });
+
             modelBuilder.Entity("GestaoDeEstacionamento.Core.Dominio.ModuloHospede.Hospede", b =>
                 {
                     b.Property<Guid>("Id")
@@ -57,6 +84,7 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("Saida")
+                        .IsRequired()
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("UsuarioId")
@@ -123,6 +151,17 @@ namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Veiculos");
+                });
+
+            modelBuilder.Entity("GestaoDeEstacionamento.Core.Dominio.ModuloFaturamento.Faturamento", b =>
+                {
+                    b.HasOne("GestaoDeEstacionamento.Core.Dominio.ModuloTicket.Ticket", "Ticket")
+                        .WithMany()
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("GestaoDeEstacionamento.Core.Dominio.ModuloTicket.Ticket", b =>

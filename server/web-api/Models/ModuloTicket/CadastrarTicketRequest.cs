@@ -10,8 +10,7 @@ public record CadastrarTicketRequest(
     Guid VagaId,
     DateTime Entrada,
     DateTime? Saida,
-    string? Observacao,
-    bool Aberta
+    string? Observacao
     );
 
 public record CadastrarTicketResponse(Guid Id);

@@ -11,8 +11,7 @@ public record CadastrarTicketCommand(
     Guid VagaId,
     DateTime Entrada,
     DateTime? Saida,
-    string? Observacao,
-    bool Aberta
+    string? Observacao    
     ) : IRequest<Result<CadastrarTicketResult>>;
 
 public record CadastrarTicketResult(Guid Id);
