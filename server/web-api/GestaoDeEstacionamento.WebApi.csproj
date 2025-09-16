@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="15.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.20" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.20">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -19,10 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\core\aplicacao\GestaoDeEstacionamento.Core.Aplicacao.csproj" />
     <ProjectReference Include="..\infraestrutura\GestaoDeEstacionamento.Infraestrutura.Orm.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Swagger\" />
   </ItemGroup>
 
 </Project>

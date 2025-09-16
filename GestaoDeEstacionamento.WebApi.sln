@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDeEstacionamento.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDeEstacionamento.Infraestrutura.Orm", "server\infraestrutura\GestaoDeEstacionamento.Infraestrutura.Orm.csproj", "{A4B168A2-0172-EC34-B3BE-9D4576389ABE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestaoDeEstacionamento.Util.TokenGenerator", "GestaoDeEstacionamento.Util.TokenGenerator\GestaoDeEstacionamento.Util.TokenGenerator.csproj", "{0C6D2AA1-C948-4EBE-B2E4-FB37C341BF4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{A4B168A2-0172-EC34-B3BE-9D4576389ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4B168A2-0172-EC34-B3BE-9D4576389ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4B168A2-0172-EC34-B3BE-9D4576389ABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C6D2AA1-C948-4EBE-B2E4-FB37C341BF4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C6D2AA1-C948-4EBE-B2E4-FB37C341BF4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C6D2AA1-C948-4EBE-B2E4-FB37C341BF4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C6D2AA1-C948-4EBE-B2E4-FB37C341BF4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{1C2C1D9C-0210-05D0-C8C8-C0DE85D79B3B} = {E95CB009-8FA2-4BDB-BEA1-31395AB719F7}
 		{58C8540B-8B46-454E-032C-23FC21825E4D} = {E95CB009-8FA2-4BDB-BEA1-31395AB719F7}
 		{A4B168A2-0172-EC34-B3BE-9D4576389ABE} = {9342EC01-E3FF-4DC1-81EA-CAAB2294255B}
+		{0C6D2AA1-C948-4EBE-B2E4-FB37C341BF4F} = {EC5A847C-9682-4703-85F2-200D9DC872F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7EA49CEB-2169-4BC5-AE1C-77F5B32DBFE4}

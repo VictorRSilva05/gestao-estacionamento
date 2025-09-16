@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GestaoDeEstacionamento.WebApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("tickets")]
 public class TicketController(IMediator mediator, IMapper mapper) : ControllerBase
 {

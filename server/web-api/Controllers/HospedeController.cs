@@ -10,6 +10,7 @@ namespace GestaoDeEstacionamento.WebApi.Controllers;
 
 
 [ApiController]
+[Authorize]
 [Route("hospedes")]
 public class HospedeController(IMediator mediator, IMapper mapper) : ControllerBase
 {

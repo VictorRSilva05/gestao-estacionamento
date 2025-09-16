@@ -3,11 +3,13 @@ using FluentResults;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloVaga.Commands;
 using GestaoDeEstacionamento.WebApi.Models.ModuloVaga;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GestaoDeEstacionamento.WebApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("vagas")]
 public class VagaController(IMediator mediator, IMapper mapper) : ControllerBase
 {

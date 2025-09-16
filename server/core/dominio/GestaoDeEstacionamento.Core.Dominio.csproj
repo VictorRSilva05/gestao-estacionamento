@@ -10,4 +10,10 @@
     <Folder Include="Compartilhado\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.1" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.20" />
+  </ItemGroup>
+
 </Project>

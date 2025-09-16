@@ -3,11 +3,13 @@ using FluentResults;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloFaturamento.Commands;
 using GestaoDeEstacionamento.WebApi.Models.ModuloFaturamento;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GestaoDeEstacionamento.WebApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("Faturamentos")]
 public class FaturamentoController(IMediator mediator, IMapper mapper) : ControllerBase
 {

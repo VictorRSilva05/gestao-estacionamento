@@ -3,11 +3,13 @@ using FluentResults;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloVeiculo.Commands;
 using GestaoDeEstacionamento.WebApi.Models.ModuloVeiculo;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GestaoDeEstacionamento.WebApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("veiculos")]
 public class VeiculoController(IMediator mediator, IMapper mapper) : ControllerBase
 {
