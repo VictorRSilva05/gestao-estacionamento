@@ -4,6 +4,7 @@ using FluentResults;
 using FluentValidation;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloHospede.Commands;
 using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
+using GestaoDeEstacionamento.Core.Dominio.ModuloAutenticacao;
 using GestaoDeEstacionamento.Core.Dominio.ModuloHospede;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Logging;
 namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloHospede.Handlers;
 public class CadastrarHospedeCommandHandler(
     IRepositorioHospede repositorioHospede,
+    ITenantProvider tenantProvider,
     IUnitOfWork unitOfWork,
     IMapper mapper,
     IValidator<CadastrarHospedeCommand> validator,
@@ -33,6 +35,8 @@ public class CadastrarHospedeCommandHandler(
         try
         {
             var hospede = mapper.Map<Hospede>(command);
+
+            hospede.UsuarioId = tenantProvider.UsuarioId.GetValueOrDefault();
 
             await repositorioHospede.CadastrarAsync(hospede);
 

@@ -4,6 +4,7 @@ using FluentResults;
 using FluentValidation;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloVeiculo.Commands;
 using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
+using GestaoDeEstacionamento.Core.Dominio.ModuloAutenticacao;
 using GestaoDeEstacionamento.Core.Dominio.ModuloVeiculo;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Logging;
 namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloVeiculo.Handlers;
 public class EditarVeiculoCommandHandler(
     IRepositorioVeiculo repositorioVeiculo,
+    ITenantProvider tenantProvider,
     IUnitOfWork unitOfWork,
     IMapper mapper,
     IValidator<EditarVeiculoCommand> validator,
@@ -33,6 +35,8 @@ public class EditarVeiculoCommandHandler(
         try
         {
             var veiculoEditado = mapper.Map<Veiculo>(command);
+
+            veiculoEditado.UsuarioId = tenantProvider.UsuarioId.GetValueOrDefault();
 
             await repositorioVeiculo.EditarAsync(command.Id, veiculoEditado);
 

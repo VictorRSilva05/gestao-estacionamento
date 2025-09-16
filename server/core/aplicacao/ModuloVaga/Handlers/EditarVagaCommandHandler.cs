@@ -4,6 +4,8 @@ using FluentResults;
 using FluentValidation;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloVaga.Commands;
 using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
+using GestaoDeEstacionamento.Core.Dominio.ModuloAutenticacao;
+using GestaoDeEstacionamento.Core.Dominio.ModuloHospede;
 using GestaoDeEstacionamento.Core.Dominio.ModuloVaga;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloVaga.Handlers;
 public class EditarVagaCommandHandler(
     IRepositorioVaga repositorioVaga,
+    ITenantProvider tenantProvider,
     IUnitOfWork unitOfWork,
     IMapper mapper,
     ILogger<EditarVagaCommandHandler> logger
@@ -20,13 +23,15 @@ public class EditarVagaCommandHandler(
     {
         try
         {
-            var VagaEditado = mapper.Map<Vaga>(command);
+            var vagaEditado = mapper.Map<Vaga>(command);
 
-            await repositorioVaga.EditarAsync(command.Id, VagaEditado);
+            vagaEditado.UsuarioId = tenantProvider.UsuarioId.GetValueOrDefault();
+
+            await repositorioVaga.EditarAsync(command.Id, vagaEditado);
 
             await unitOfWork.CommitAsync();
 
-            var result = mapper.Map<EditarVagaResult>(VagaEditado);
+            var result = mapper.Map<EditarVagaResult>(vagaEditado);
 
             return Result.Ok(result);
         }

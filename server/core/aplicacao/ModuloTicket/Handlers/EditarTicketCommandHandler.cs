@@ -4,6 +4,7 @@ using FluentResults;
 using FluentValidation;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloTicket.Commands;
 using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
+using GestaoDeEstacionamento.Core.Dominio.ModuloAutenticacao;
 using GestaoDeEstacionamento.Core.Dominio.ModuloHospede;
 using GestaoDeEstacionamento.Core.Dominio.ModuloTicket;
 using GestaoDeEstacionamento.Core.Dominio.ModuloVaga;
@@ -18,6 +19,7 @@ public class EditarTicketCommandHandler(
     IRepositorioHospede repositorioHospede,
     IRepositorioVeiculo repositorioVeiculo,
     IRepositorioVaga repositorioVaga,
+    ITenantProvider tenantProvider,
     IUnitOfWork unitOfWork,
     IMapper mapper,
     IValidator<EditarTicketCommand> validator,
@@ -52,6 +54,8 @@ public class EditarTicketCommandHandler(
                 return Result.Fail("Vaga não encontrada.");
 
             var ticketEditado = mapper.Map<Ticket>(command);
+
+            ticketEditado.UsuarioId = tenantProvider.UsuarioId.GetValueOrDefault();
 
             ticketEditado.Hospede = hospedeExiste;
             ticketEditado.Veiculo = veiculoExiste;

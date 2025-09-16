@@ -35,7 +35,7 @@ public class AccessTokenProvider : ITokenProvider
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Issuer = "eAgenda",
+            Issuer = "GestaoDeEstacionamento",
             Audience = audienciaValida,
             Subject = new ClaimsIdentity(
             [

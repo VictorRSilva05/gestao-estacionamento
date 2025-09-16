@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GestaoDeEstacionamento.Infraestrutura.Orm.Migrations
 {
     [DbContext(typeof(GestaoDeEstacionamentoDbContext))]
-    [Migration("20250916134438_AddTabelas")]
+    [Migration("20250916163643_AddTabelas")]
     partial class AddTabelas
     {
         /// <inheritdoc />

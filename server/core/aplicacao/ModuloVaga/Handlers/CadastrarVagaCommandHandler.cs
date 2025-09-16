@@ -4,6 +4,8 @@ using FluentResults;
 using FluentValidation;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloVaga.Commands;
 using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
+using GestaoDeEstacionamento.Core.Dominio.ModuloAutenticacao;
+using GestaoDeEstacionamento.Core.Dominio.ModuloHospede;
 using GestaoDeEstacionamento.Core.Dominio.ModuloVaga;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -11,6 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloVaga.Handlers;
 public class CadastrarVagaCommandHandler(
     IRepositorioVaga repositorioVaga,
+    ITenantProvider tenantProvider,
     IUnitOfWork unitOfWork,
     IMapper mapper,
     ILogger<CadastrarVagaCommandHandler> logger
@@ -20,13 +23,15 @@ public class CadastrarVagaCommandHandler(
     {
         try
         {
-            var Vaga = mapper.Map<Vaga>(command);
+            var vaga = mapper.Map<Vaga>(command);
 
-            await repositorioVaga.CadastrarAsync(Vaga);
+            vaga.UsuarioId = tenantProvider.UsuarioId.GetValueOrDefault();
+
+            await repositorioVaga.CadastrarAsync(vaga);
 
             await unitOfWork.CommitAsync();
 
-            var result = mapper.Map<CadastrarVagaResult>(Vaga);
+            var result = mapper.Map<CadastrarVagaResult>(vaga);
 
             return Result.Ok(result);
         }

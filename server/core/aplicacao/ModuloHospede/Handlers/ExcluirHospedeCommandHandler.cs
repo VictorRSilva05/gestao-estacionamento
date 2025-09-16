@@ -2,6 +2,7 @@
 using FluentResults;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloHospede.Commands;
 using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
+using GestaoDeEstacionamento.Core.Dominio.ModuloAutenticacao;
 using GestaoDeEstacionamento.Core.Dominio.ModuloHospede;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;

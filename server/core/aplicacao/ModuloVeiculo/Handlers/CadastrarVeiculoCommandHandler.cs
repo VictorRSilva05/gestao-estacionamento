@@ -4,6 +4,7 @@ using FluentResults;
 using FluentValidation;
 using GestaoDeEstacionamento.Core.Aplicacao.ModuloVeiculo.Commands;
 using GestaoDeEstacionamento.Core.Dominio.Compartilhado;
+using GestaoDeEstacionamento.Core.Dominio.ModuloAutenticacao;
 using GestaoDeEstacionamento.Core.Dominio.ModuloVeiculo;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace GestaoDeEstacionamento.Core.Aplicacao.ModuloVeiculo.Handlers;
 public class CadastrarVeiculoCommandHandler(
     IRepositorioVeiculo repositorioVeiculo,
+    ITenantProvider tenantProvider,
     IUnitOfWork unitOfWork,
     IMapper mapper,
     IValidator<CadastrarVeiculoCommand> validator,
@@ -34,6 +36,8 @@ public class CadastrarVeiculoCommandHandler(
         try
         {
             var veiculo = mapper.Map<Veiculo>(command);
+
+            veiculo.UsuarioId = tenantProvider.UsuarioId.GetValueOrDefault();
 
             await repositorioVeiculo.CadastrarAsync(veiculo);
 

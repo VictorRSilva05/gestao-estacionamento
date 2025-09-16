@@ -21,23 +21,23 @@ public class GestaoDeEstacionamentoDbContext(DbContextOptions options, ITenantPr
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        if (tenantProvider is not null)
-        {
-            modelBuilder.Entity<Hospede>()
-                .HasQueryFilter(x => x.UsuarioId.Equals(tenantProvider.UsuarioId));
+        //if (tenantProvider is not null)
+        //{
+        //    modelBuilder.Entity<Hospede>()
+        //        .HasQueryFilter(x => x.UsuarioId.Equals(tenantProvider.UsuarioId));
 
-            modelBuilder.Entity<Veiculo>()
-              .HasQueryFilter(x => x.UsuarioId.Equals(tenantProvider.UsuarioId));
+        //    modelBuilder.Entity<Veiculo>()
+        //      .HasQueryFilter(x => x.UsuarioId.Equals(tenantProvider.UsuarioId));
 
-            modelBuilder.Entity<Vaga>()
-              .HasQueryFilter(x => x.UsuarioId.Equals(tenantProvider.UsuarioId));
+        //    modelBuilder.Entity<Vaga>()
+        //      .HasQueryFilter(x => x.UsuarioId.Equals(tenantProvider.UsuarioId));
 
-            modelBuilder.Entity<Ticket>()
-              .HasQueryFilter(x => x.UsuarioId.Equals(tenantProvider.UsuarioId));
+        //    modelBuilder.Entity<Ticket>()
+        //      .HasQueryFilter(x => x.UsuarioId.Equals(tenantProvider.UsuarioId));
 
-            modelBuilder.Entity<Faturamento>()
-              .HasQueryFilter(x => x.UsuarioId.Equals(tenantProvider.UsuarioId));
-        }
+        //    modelBuilder.Entity<Faturamento>()
+        //      .HasQueryFilter(x => x.UsuarioId.Equals(tenantProvider.UsuarioId));
+        //}
 
         var assembly = typeof(GestaoDeEstacionamentoDbContext).Assembly;
 
