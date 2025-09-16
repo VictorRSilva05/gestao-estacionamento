@@ -21,9 +21,9 @@ public class SelecionarFaturamentosPorPeriodoQueryHandler(
             var faturamentos = await repositorioFaturamento
                 .SelecionarPorPeriodoAsync(query.DataInicio, query.DataFim);
 
-            var dtoList = mapper.Map<List<SelecionarFaturamentosDto>>(faturamentos);
+            var result = mapper.Map<SelecionarFaturamentosResult>(faturamentos);
 
-            return Result.Ok(new SelecionarFaturamentosResult(dtoList.ToImmutableList()));
+            return Result.Ok(result);
         }
         catch (Exception ex)
         {

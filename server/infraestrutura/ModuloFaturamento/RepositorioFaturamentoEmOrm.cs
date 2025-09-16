@@ -23,7 +23,8 @@ public class RepositorioFaturamentoEmOrm(GestaoDeEstacionamentoDbContext context
     public async Task<List<Faturamento>> SelecionarPorPeriodoAsync(DateTime dataInicio, DateTime dataFim)
     {
         return await registros
-            .Where(f => f.Ticket.Entrada >= dataInicio && f.Ticket.Saida <= dataFim)
+            .Include(x => x.Ticket)
+            .Where(f => f.Ticket.Entrada.Date >= dataInicio.Date && f.Ticket.Saida.Value.Date <= dataFim.Date)
             .ToListAsync();
     }
 }

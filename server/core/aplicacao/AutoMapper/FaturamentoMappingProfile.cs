@@ -32,6 +32,9 @@ public class FaturamentoMappingProfile : Profile
                 src.Total
             ));
 
+        CreateMap<List<Faturamento>, SelecionarFaturamentosResult>()
+            .ConvertUsing((src,_,ctx) => new SelecionarFaturamentosResult(ctx.Mapper.Map<IReadOnlyList<SelecionarFaturamentosDto>>(src).ToImmutableList()));
+
         CreateMap<IEnumerable<Faturamento>, SelecionarFaturamentosResult>()
          .ConvertUsing((src, dest, ctx) =>
              new SelecionarFaturamentosResult(
