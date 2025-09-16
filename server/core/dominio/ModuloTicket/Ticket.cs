@@ -16,12 +16,12 @@ public class Ticket : EntidadeBase<Ticket>
 
     public Ticket() { }
 
-    public Ticket(Hospede hospede, Veiculo veiculo,DateTime saida, Vaga vaga, string? observacao) : this()
+    public Ticket(Hospede hospede, Veiculo veiculo, Vaga vaga, DateTime saida, string? observacao) : this()
     {
         Hospede = hospede;
         Veiculo = veiculo;
         Vaga = vaga;
-        Entrada = DateTime.Now;
+        Entrada = DateTime.UtcNow;
         Saida = saida;
         Observacao = observacao;
         Aberta = true;
@@ -40,6 +40,12 @@ public class Ticket : EntidadeBase<Ticket>
 
     public override void AtualizarRegistro(Ticket registroEditado)
     {
-        throw new NotImplementedException();
+        Hospede = registroEditado.Hospede;
+        Veiculo = registroEditado.Veiculo;
+        Vaga = registroEditado.Vaga;
+        Entrada = registroEditado.Entrada;
+        Saida = registroEditado.Saida;
+        Observacao = registroEditado.Observacao;
+        Aberta = registroEditado.Aberta;
     }
 }

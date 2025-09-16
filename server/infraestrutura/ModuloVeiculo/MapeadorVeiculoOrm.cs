@@ -12,7 +12,7 @@ public class MapeadorVeiculoOrm : IEntityTypeConfiguration<Veiculo>
             .IsRequired();
 
         builder.Property(x => x.Placa)
-            .HasMaxLength(7)
+            .HasMaxLength(8)
             .IsRequired();
 
         builder.Property(x => x.Modelo) 
