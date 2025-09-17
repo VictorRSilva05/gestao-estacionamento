@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ModuloHospede\" />
     <Folder Include="ModuloVeiculo\" />
     <Folder Include="ModuloAutenticacao\" />
   </ItemGroup>
@@ -19,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\server\core\aplicacao\GestaoDeEstacionamento.Core.Aplicacao.csproj" />
     <ProjectReference Include="..\server\core\dominio\GestaoDeEstacionamento.Core.Dominio.csproj" />
   </ItemGroup>
 
