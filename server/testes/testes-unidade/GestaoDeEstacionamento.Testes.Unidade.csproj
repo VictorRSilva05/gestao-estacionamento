@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\core\aplicacao\GestaoDeEstacionamento.Core.Aplicacao.csproj" />
+    <ProjectReference Include="..\..\core\dominio\GestaoDeEstacionamento.Core.Dominio.csproj" />
+    <ProjectReference Include="..\..\infraestrutura\GestaoDeEstacionamento.Infraestrutura.Orm.csproj" />
     <ProjectReference Include="..\server\core\aplicacao\GestaoDeEstacionamento.Core.Aplicacao.csproj" />
     <ProjectReference Include="..\server\core\dominio\GestaoDeEstacionamento.Core.Dominio.csproj" />
   </ItemGroup>
