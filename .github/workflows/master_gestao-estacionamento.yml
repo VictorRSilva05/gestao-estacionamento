@@ -78,7 +78,7 @@ jobs:
         run: dotnet tool install --global dotnet-ef
 
       - name: Apply EF Core migrations
-        run: dotnet ef database update --project ./server/infraestrutura/GestaoDeEstacionamento.Infraestrutura.Orm.csproj --startup-project ./server/GestaoDeEstacionamento.WebApi.csproj
+        run: dotnet ef database update --project ./server/infraestrutura/GestaoDeEstacionamento.Infraestrutura.Orm.csproj --startup-project ./server/web-api/GestaoDeEstacionamento.WebApi.csproj
         env:
           ASPNET_ENVIRONMENT: "GITHUB_ACTIONS"
           SQL_CONNECTION_STRING: ${{ secrets.SQL_CONNECTION_STRING }}
